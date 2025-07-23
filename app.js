@@ -10,6 +10,7 @@ var helloRouter = require('./routes/hello');
 var notesRouter = require('./routes/notes');
 var catRouter = require('./routes/cat');
 var yesnoRouter = require('./routes/yesno');
+var notesFromBRouter = require('./routes/notes_from_b');
 
 var app = express();
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/notes_from_b', notesFromBRouter);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

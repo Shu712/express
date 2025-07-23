@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
+require('dotenv').config();
 
 // MongoDBに接続するための設定
 const { MongoClient } = require("mongodb");
-const uri = "mongodb+srv://shu:Ve3525jgjr@cluster0.po3axwp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// 古い固定のURIは削除
+// const uri = "mongodb+srv://shu:Ve3525jgjr@cluster0.po3axwp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+// .envファイルからURIを取得（1回だけ宣言）
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
 // ノート情報を1件取得するAPI
@@ -26,4 +31,3 @@ router.get('/', async (req, res) => {
 });
 
 module.exports = router;
-
